@@ -51,6 +51,7 @@ class Client(QtWidgets.QMainWindow):
         self.ui.conn_btn.clicked.connect(self.__connect)
         self.ui.generate_btn.clicked.connect(self.__generate_file)
         self.ui.send_btn.clicked.connect(self.__send_message)
+        self.ui.disc_btn_yes_2.clicked.connect(self.__disconnect)
 
 
     def __connect(self):
@@ -75,6 +76,7 @@ class Client(QtWidgets.QMainWindow):
 
                 self.ui.result_plainTextEdit.clear()
                 self.ui.result_plainTextEdit.appendPlainText('Вы успешно подключились!')
+                self.ui.disconnect_btn.show()
 
                 self.ui.msg_plainTextEdit.clear()
                 self.ui.msg_plainTextEdit.appendPlainText('\t\t Вы подключились!')
@@ -98,7 +100,7 @@ class Client(QtWidgets.QMainWindow):
 
                 self.ui.result_plainTextEdit_2.clear()
                 self.ui.result_plainTextEdit_2.appendPlainText('Файлы созданы успешно!')
-                self.ui.result_plainTextEdit_2.appendPlainText('Файл "public" передайте своему собесенику')
+                self.ui.result_plainTextEdit_2.appendPlainText('Папку "public" передайте своему собесенику')
             else:
                 self.ui.result_plainTextEdit_2.clear()
                 self.ui.result_plainTextEdit_2.appendPlainText('Порт введён неверно!')
@@ -109,7 +111,6 @@ class Client(QtWidgets.QMainWindow):
 
     def __send_message(self):
         if len(str(self.ui.send_input.text())) > 0:
-            # print(f'send: {str(self.ui.send_input.text())}')
             msg = str(self.ui.send_input.text())
             with shelve.open('public\public') as file:
                 self.sock.send(rsa.encrypt(msg.encode('utf-8'), file['public_key']))
@@ -132,8 +133,18 @@ class Client(QtWidgets.QMainWindow):
                 else:
                     self.ui.msg_plainTextEdit.appendPlainText(msg.decode('utf-8'))
 
-    def disconnect(self):
+    def __disconnect(self):
         self.sock.close() 
+        self.ui.disconnect_btn.hide()
+        self.ui.frame_disconnect.lower()
+        self.ui.msg_plainTextEdit.clear()
+        self.ui.status_connect.lower()
+        self.ui.ip_input.clear()
+        self.ui.port_input.clear()
+        self.ui.result_plainTextEdit.clear()
+        self.ui.ip_input_2.clear()
+        self.ui.port_input_2.clear()
+        self.ui.result_plainTextEdit_2.clear()
 
 
 def application():
@@ -141,7 +152,6 @@ def application():
     client = Client()
 
     client.show()
-    # client.disconnect()
     sys.exit(app.exec_())
 
 

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_RSAchat(object):
     def setupUi(self, RSAchat):
         RSAchat.setObjectName("RSAchat")
-        RSAchat.resize(500, 600)
+        RSAchat.setFixedSize(500, 600)
         self.centralwidget = QtWidgets.QWidget(RSAchat)
         self.centralwidget.setObjectName("centralwidget")
         self.frame_main = QtWidgets.QFrame(self.centralwidget)
@@ -77,12 +77,57 @@ class Ui_RSAchat(object):
 "font-size: 18px;\n"
 "font-weight: 300;")
         self.settings_btn.setObjectName("settings_btn")
+        self.disconnect_btn = QtWidgets.QPushButton(self.frame_menu)
+        self.disconnect_btn.setGeometry(QtCore.QRect(90, 25, 111, 41))
+        self.disconnect_btn.setStyleSheet("background-color: #00ADB5;\n"
+"border: none;\n"
+"border-radius: 20%;\n"
+"color: #eeeeee;\n"
+"font-size: 12px;\n"
+"font-weight: 300;")
+        self.disconnect_btn.setObjectName("disconnect_btn")
         self.msg_plainTextEdit = QtWidgets.QPlainTextEdit(self.frame_main)
         self.msg_plainTextEdit.setGeometry(QtCore.QRect(10, 90, 471, 411))
         self.msg_plainTextEdit.setStyleSheet("border: none;\n"
 "color: #fff;\n"
 "font-size: 20px;")
+        self.msg_plainTextEdit.setPlainText("")
         self.msg_plainTextEdit.setObjectName("msg_plainTextEdit")
+        self.frame_disconnect = QtWidgets.QFrame(self.frame_main)
+        self.frame_disconnect.setGeometry(QtCore.QRect(70, 130, 350, 350))
+        self.frame_disconnect.setStyleSheet("background-color: #222831; border-radius: 20%;")
+        self.frame_disconnect.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_disconnect.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_disconnect.setObjectName("frame_disconnect")
+        self.disconnect_text_2 = QtWidgets.QLabel(self.frame_disconnect)
+        self.disconnect_text_2.setGeometry(QtCore.QRect(70, 20, 221, 91))
+        self.disconnect_text_2.setStyleSheet("color: #fff;\n"
+"font-size: 25px;\n"
+"font-weight: 700;")
+        self.disconnect_text_2.setWordWrap(True)
+        self.disconnect_text_2.setObjectName("disconnect_text_2")
+        self.disc_btn_yes_2 = QtWidgets.QPushButton(self.frame_disconnect)
+        self.disc_btn_yes_2.setGeometry(QtCore.QRect(70, 140, 210, 50))
+        self.disc_btn_yes_2.setStyleSheet("background-color: #00ADB5;\n"
+"border: none;\n"
+"border-radius: 20%;\n"
+"color: #eeeeee;\n"
+"font-size: 25px;\n"
+"font-weight: 700;")
+        self.disc_btn_yes_2.setObjectName("disc_btn_yes_2")
+        self.disc_btn_no_2 = QtWidgets.QPushButton(self.frame_disconnect)
+        self.disc_btn_no_2.setGeometry(QtCore.QRect(70, 230, 210, 50))
+        self.disc_btn_no_2.setStyleSheet("background-color: #00ADB5;\n"
+"border: none;\n"
+"border-radius: 20%;\n"
+"color: #eeeeee;\n"
+"font-size: 25px;\n"
+"font-weight: 700;")
+        self.disc_btn_no_2.setObjectName("disc_btn_no_2")
+        self.frame_disconnect.raise_()
+        self.write_msg.raise_()
+        self.frame_menu.raise_()
+        self.msg_plainTextEdit.raise_()
         self.frame_guide = QtWidgets.QFrame(self.centralwidget)
         self.frame_guide.setGeometry(QtCore.QRect(0, 0, 500, 600))
         self.frame_guide.setStyleSheet("background-color: #393E46;")
@@ -281,19 +326,19 @@ class Ui_RSAchat(object):
         RSAchat.setWindowIcon(QtGui.QIcon('assets\\icon.png'))
         self.send_btn.setText(_translate("RSAchat", ">"))
         self.settings_btn.setText(_translate("RSAchat", "настройки ->"))
-        self.msg_plainTextEdit.setPlainText(_translate("RSAchat", "\n"
-""))
-        self.guide_text.setText(_translate("RSAchat", "1. Необходимо сгенерировать два файла (кнопка сгенерировать ключи)\n"
+        self.disconnect_btn.setText(_translate("RSAchat", "Отключиться"))
+        self.disconnect_text_2.setText(_translate("RSAchat", "Вы точно хотите отключиться?"))
+        self.disc_btn_yes_2.setText(_translate("RSAchat", "Да"))
+        self.disc_btn_no_2.setText(_translate("RSAchat", "Нет"))
+        self.guide_text.setText(_translate("RSAchat", "1. Запустите сервер (на одном из компьютеров) и следуйте инструкциям. Запускается через файл 'server.py', который находится в той же директории, что и сам чат.\n"
 "\n"
-" 2. Заходим в директорию, куда был установлен чат.\n"
+" 2. Необходимо сгенерировать два файла (кнопка сгенерировать файлы). Ip и port сервера написаны в самом сервере.\n"
 "\n"
-" 3. Файл send_to_friend необходимо отправить вашему собеседнику\n"
+" 3. Зайдите в директорию, куда был установлен чат.\n"
 "\n"
-" 4. На одном из компьютеров (или на другом) необходимо запустить сервер (находится в той же директории, что и чат).\n"
+" 4. Папку public необходимо отправить вашему собеседнику, а ваш собеседник должен отправить вам свою папку public. Далее заменяем вашу папку public на отправленную вам.\n"
 "\n"
-" 5. Пользователь, на чьём компьютере запущен сервер, должен отправить папку data (в той же директории, что и сервер) собеседнику.\n"
-"\n"
-" 6. Получив папку data, пользователь помещает её в директорию, куда вы устанавливали чат, а заеам нажать на кнопку Подключиться, после чего произойдёт подключение."))
+" 5. Нажмите на кнопку подключиться, введите ip и port сервера, после чего произойдет подключение. Затем вернитесь на главный экран."))
         self.back_btn.setText(_translate("RSAchat", "<- Назад"))
         self.conn_btn.setText(_translate("RSAchat", "Подключиться"))
         self.guide_btn_2.setText(_translate("RSAchat", "Инструкция"))
@@ -305,6 +350,8 @@ class Ui_RSAchat(object):
         self.gogenerate_btn.setText(_translate("RSAchat", "Сгенерировать файлы"))
         self.guide_btn.setText(_translate("RSAchat", "Инструкция"))
         self.back_btn_2.setText(_translate("RSAchat", "<- Назад"))
+        
+        self.disconnect_btn.hide()
 
         self.guide_btn.clicked.connect(lambda: self.frame_guide.raise_())
         self.guide_btn_2.clicked.connect(lambda: self.frame_guide.raise_())
@@ -312,10 +359,12 @@ class Ui_RSAchat(object):
         self.settings_btn.clicked.connect(lambda: self.frame_settings.raise_())
         self.goconn_btn.clicked.connect(lambda: self.frame_connect.raise_())
         self.gogenerate_btn.clicked.connect(lambda: self.frame_generate.raise_())
+        self.disconnect_btn.clicked.connect(lambda: self.frame_disconnect.raise_())
         self.back_btn.clicked.connect(lambda: self.frame_guide.lower())
         self.back_btn_2.clicked.connect(lambda: self.frame_settings.lower())
         self.back_btn_3.clicked.connect(lambda: self.frame_connect.lower())
         self.back_btn_4.clicked.connect(lambda: self.frame_generate.lower())
+        self.disc_btn_no_2.clicked.connect(lambda: self.frame_disconnect.lower())
 
 
         self.send_btn.setEnabled(False)
