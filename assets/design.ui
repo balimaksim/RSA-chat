@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RSAchat</class>
+ <widget class="QMainWindow" name="RSAchat">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>RSAchat</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame_main">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>500</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #393E46;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="write_msg">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>515</y>
+       <width>450</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 30%</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QPushButton" name="send_btn">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>10</y>
+        <width>41</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #00ADB5;
+border: none;
+border-radius: 20%;
+color: #eeeeee;
+font-size: 18px;
+font-weight: 300;</string>
+      </property>
+      <property name="text">
+       <string>&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="send_input">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>350</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #fff;
+font-size: 20px;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_menu">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>500</width>
+       <height>85</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QFrame" name="status_connect">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>30</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #9ADE7B;
+border-radius: 15px;
+</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="status_disconnect">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>30</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #FF8F8F;
+border-radius: 15px;
+</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="settings_btn">
+      <property name="geometry">
+       <rect>
+        <x>285</x>
+        <y>25</y>
+        <width>190</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #00ADB5;
+border: none;
+border-radius: 20%;
+color: #eeeeee;
+font-size: 18px;
+font-weight: 300;</string>
+      </property>
+      <property name="text">
+       <string>настройки -&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPlainTextEdit" name="msg_plainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>471</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: #fff;
+font-size: 20px;</string>
+     </property>
+     <property name="plainText">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_guide">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>500</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #393E46;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="guide_text">
+     <property name="geometry">
+      <rect>
+       <x>34</x>
+       <y>15</y>
+       <width>441</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #eeeeee;
+font-weight: 500;
+font-size: 18px;
+</string>
+     </property>
+     <property name="text">
+      <string>1. Необходимо сгенерировать два файла (кнопка сгенерировать ключи)
+
+ 2. Заходим в директорию, куда был установлен чат.
+
+ 3. Файл send_to_friend необходимо отправить вашему собеседнику
+
+ 4. На одном из компьютеров (или на другом) необходимо запустить сервер (находится в той же директории, что и чат).
+
+ 5. Пользователь, на чьём компьютере запущен сервер, должен отправить папку data (в той же директории, что и сервер) собеседнику.
+
+ 6. Получив папку data, пользователь помещает её в директорию, куда вы устанавливали чат, а заеам нажать на кнопку Подключиться, после чего произойдёт подключение.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="back_btn">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>530</y>
+       <width>410</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #00ADB5;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 500;
+font-size: 28px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;- Назад</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_connect">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>500</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #393E46;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="conn_btn">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>150</y>
+       <width>430</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 700;
+font-size: 28px;</string>
+     </property>
+     <property name="text">
+      <string>Подключиться</string>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="result_plainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>240</y>
+       <width>431</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #fff;
+border: 1px solid grey;
+font-size: 20px;</string>
+     </property>
+     <property name="plainText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="guide_btn_2">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>390</y>
+       <width>430</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 700;
+font-size: 28px;</string>
+     </property>
+     <property name="text">
+      <string>Инструкция</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="back_btn_3">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>500</y>
+       <width>410</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #00ADB5;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 500;
+font-size: 28px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;- Назад</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ip_input">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>440</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #EEEEEE;
+color: #393E46;
+font-size: 26px;
+border-radius: 10%;</string>
+     </property>
+     <property name="maxLength">
+      <number>15</number>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="port_input">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>80</y>
+       <width>440</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #EEEEEE;
+color: #393E46;
+font-size: 26px;
+border-radius: 10%;</string>
+     </property>
+     <property name="maxLength">
+      <number>5</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_generate">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>500</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #393E46;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPlainTextEdit" name="result_plainTextEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>240</y>
+       <width>431</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #fff;
+border: 1px solid grey;
+font-size: 20px;</string>
+     </property>
+     <property name="plainText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="guide_btn_3">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>390</y>
+       <width>430</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 700;
+font-size: 28px;</string>
+     </property>
+     <property name="text">
+      <string>Инструкция</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="back_btn_4">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>500</y>
+       <width>410</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #00ADB5;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 500;
+font-size: 28px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;- Назад</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="generate_btn">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>150</y>
+       <width>430</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 700;
+font-size: 28px;</string>
+     </property>
+     <property name="text">
+      <string>Сгенерировать файлы</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ip_input_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>440</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #EEEEEE;
+color: #393E46;
+font-size: 26px;
+border-radius: 10%;</string>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="maxLength">
+      <number>15</number>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="port_input_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>80</y>
+       <width>440</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #EEEEEE;
+color: #393E46;
+font-size: 26px;
+border-radius: 10%;</string>
+     </property>
+     <property name="maxLength">
+      <number>5</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_settings">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>500</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #393E46;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="goconn_btn">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>50</y>
+       <width>430</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 700;
+font-size: 28px;</string>
+     </property>
+     <property name="text">
+      <string>Подключиться</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="gogenerate_btn">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>175</y>
+       <width>430</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 700;
+font-size: 28px;</string>
+     </property>
+     <property name="text">
+      <string>Сгенерировать файлы</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="guide_btn">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>300</y>
+       <width>430</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #222831;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 700;
+font-size: 28px;</string>
+     </property>
+     <property name="text">
+      <string>Инструкция</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="back_btn_2">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>500</y>
+       <width>410</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #00ADB5;
+border-radius: 20%;
+border: none;
+color: #EEEEEE;
+font-weight: 500;
+font-size: 28px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;- Назад</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>frame_guide</zorder>
+   <zorder>frame_settings</zorder>
+   <zorder>frame_connect</zorder>
+   <zorder>frame_generate</zorder>
+   <zorder>frame_main</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
