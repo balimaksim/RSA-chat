@@ -10,9 +10,8 @@ class Server:
         self.users_amount = users_amount
         
         while True:
-            os.system('cls')
-            self.host = input("Пожалуйста, введите ip сервера (если не знаете какой, то прото нажмие Enter): ")
-            if len(self.host) == 0:
+            self.host = input("Пожалуйста, введите ip сервера (если не знаете какой, то введите 0): ")
+            if self.host == '0':
                 self.host = socket.gethostname()
                 break
             if len(self.host) <= 15 and len(self.host) >= 7:
@@ -21,14 +20,11 @@ class Server:
                 print('Данные введены неверно!')
 
         while True:
-            self.port = input("Пожалуйста, введите порт, через который будет работать сервер (если не знаете какой, то прото нажмие Enter): ")
-            if len(self.port) == 0:
+            self.port = int(input("Пожалуйста, введите порт (в диапазоне от 1024 до 49151), через который будет работать сервер (если не знаете какой, то введите 0): "))
+            if self.port == 0:
                 self.port = 9090
+            if self.port >= 1024 and self.port <= 49151:
                 break
-            if len(self.port) > 0:
-                self.port = str(self.port)
-            # if len(str(self.port)) <= 5 and len(str(self.port)) >= 4 and type(self.port) == int:
-            #     break
             else:
                 print('Данные введены не верно!')
         
@@ -48,7 +44,6 @@ class Server:
     def __connections_control(self) -> None:
         while True:
             conn, addr = self.server.accept()
-            print(f'{addr} connected')
             if conn not in self.users:
                 self.users.append(conn)
                 msg_control = threading.Thread(target=self.__message_control, args=[conn])
@@ -59,7 +54,6 @@ class Server:
         while True:
             message = conn.recv(1024)
 
-            print(message)
 
             for client in self.users:
             #     if conn != client:

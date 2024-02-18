@@ -330,7 +330,7 @@ class Ui_RSAchat(object):
         self.disconnect_text_2.setText(_translate("RSAchat", "Вы точно хотите отключиться?"))
         self.disc_btn_yes_2.setText(_translate("RSAchat", "Да"))
         self.disc_btn_no_2.setText(_translate("RSAchat", "Нет"))
-        self.guide_text.setText(_translate("RSAchat", "1. Запустите сервер (на одном из компьютеров) и следуйте инструкциям. Запускается через файл 'server.py', который находится в той же директории, что и сам чат.\n"
+        self.guide_text.setText(_translate("RSAchat", "1. Запустите сервер (на одном из компьютеров) и следуйте инструкциям. Запускается через файл 'server.bat', который находится в той же директории, что и сам чат.\n"
 "\n"
 " 2. Необходимо сгенерировать два файла (кнопка сгенерировать файлы). Ip и port сервера написаны в самом сервере.\n"
 "\n"
