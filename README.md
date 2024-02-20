@@ -34,5 +34,8 @@ pip install -r requirements.txt
 ## Authors
 + **Balitskii Maksim** - *initial work* - [balimaksim](https://github.com/balimaksim)
 
+## License
+This porject is licensed under [License](https://github.com/balimaksim/RSA-chat/blob/main/LICENSE.md) file for 
+
 ## Acknowledgments
 + Thanks to my supervisor and computer science teacher for their help in creating this project.
