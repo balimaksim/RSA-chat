@@ -35,7 +35,7 @@ pip install -r requirements.txt
 + **Balitskii Maksim** - *initial work* - [balimaksim](https://github.com/balimaksim)
 
 ## License
-This porject is licensed under [License](https://github.com/balimaksim/RSA-chat/blob/main/LICENSE.md) file for details
+This porject is licensed under MIT License - see the [LICENSE.md](https://github.com/balimaksim/RSA-chat/blob/main/LICENSE.md) file for details
 
 ## Acknowledgments
 + Thanks to my supervisor and computer science teacher for their help in creating this project.
