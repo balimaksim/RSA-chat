@@ -2,17 +2,19 @@ import socket
 import threading
 import os
 
+
 class Server:
-    def __init__(self, users_amount=2) -> None:
+    def __init__(self) -> None:
         self.host = None
         self.port = None
         self.users = []
-        self.users_amount = users_amount
+        self.users_amount = 2
+        self.thread_msg_list = {}
         
         while True:
             self.host = input("Пожалуйста, введите ip сервера (если не знаете какой, то введите 0): ")
             if self.host == '0':
-                self.host = socket.gethostname()
+                self.host = socket.gethostbyname(socket.gethostname())
                 break
             if len(self.host) <= 15 and len(self.host) >= 7:
                 break
@@ -34,7 +36,7 @@ class Server:
         threading.Thread(target=self.__connections_control).start()
         os.system('cls')
         print('[!!!] Сервер запущен')
-        if self.host == socket.gethostname():
+        if self.host == socket.gethostbyname(socket.gethostname()):
             print(f'IP сервера: {socket.gethostbyname(socket.gethostname())}')
         else:
             print(f'IP сервера: {self.host}')
@@ -42,23 +44,30 @@ class Server:
 
 
     def __connections_control(self) -> None:
-        while True:
+        while len(self.users) < self.users_amount:
             conn, addr = self.server.accept()
+            print('f')
             if conn not in self.users:
                 self.users.append(conn)
                 msg_control = threading.Thread(target=self.__message_control, args=[conn])
                 msg_control.start()
-
+                self.thread_msg_list[conn] = msg_control
 
     def __message_control(self, conn) -> None:
         while True:
-            message = conn.recv(1024)
+            try:
+                message = conn.recv(1024)
+
+                for client in self.users:
+                    client.send(message)
+            except socket.error as e:
+                print(e)
+                self.users.remove(conn)
+                print(self.thread_msg_list)
+                del self.thread_msg_list[conn]
+                print(self.thread_msg_list)
+                break
 
 
-            for client in self.users:
-            #     if conn != client:
-                client.send(message)
 
-
-
-server = Server(users_amount=2)
+server = Server()

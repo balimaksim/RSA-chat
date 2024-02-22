@@ -57,7 +57,7 @@ class Client(QtWidgets.QMainWindow):
     def __connect(self):
         try:
             self.sock = socket.socket()
-            self.msg_get_thread = threading.Thread(target=self.__get_messages) 
+            self.msg_get_thread = threading.Thread(target=self.__get_messages)
             # self.MessageControllerThread = MessageContorller(window=self.ui, socket=self.sock)
 
             if not os.path.exists('private\private.dat'):
@@ -80,7 +80,10 @@ class Client(QtWidgets.QMainWindow):
 
                 self.ui.msg_plainTextEdit.clear()
                 self.ui.msg_plainTextEdit.appendPlainText('\t\t Вы подключились!')
-        except:
+
+                self.__send_message('\n\t\t---user_connect---\n', True)
+        except Exception as e:
+            print(e)
             self.ui.result_plainTextEdit.clear()
             self.ui.result_plainTextEdit.appendPlainText('Неверно введены данные!')
 
@@ -109,32 +112,46 @@ class Client(QtWidgets.QMainWindow):
             self.ui.result_plainTextEdit_2.appendPlainText('IP введён неверно!')
 
 
-    def __send_message(self):
+    def __send_message(self, message=None, notification=False):
+        print(message)
         if len(str(self.ui.send_input.text())) > 0:
             msg = str(self.ui.send_input.text())
             with shelve.open('public\public') as file:
                 self.sock.send(rsa.encrypt(msg.encode('utf-8'), file['public_key']))
-                self.from_me = True
+                self.from_me = True if not notification else False
             msg = None
             self.ui.send_input.clear()
+        if message:
+            msg = message
+            with shelve.open('public\public') as file:
+                self.sock.send(rsa.encrypt(msg.encode('utf-8'), file['public_key']))
+                self.from_me = True if not notification else False
+            msg = None
     
         
     def __get_messages(self):
         while True:
-            data = self.sock.recv(1024)
+            try:
+                data = self.sock.recv(2048)
 
-            self.ui.msg_plainTextEdit.setFocus()
-            with shelve.open('private\private') as file:
-                msg = rsa.decrypt(data, file['private_key'])
+                self.ui.msg_plainTextEdit.setFocus()
+                with shelve.open('private\private') as file:
+                    msg = rsa.decrypt(data, file['private_key'])
 
-                if self.from_me:
-                    self.ui.msg_plainTextEdit.appendPlainText(f'[Вы]:\t{msg.decode("utf-8")}')
-                    self.from_me = False
-                else:
-                    self.ui.msg_plainTextEdit.appendPlainText(msg.decode('utf-8'))
+                    if self.from_me:
+                        self.ui.msg_plainTextEdit.appendPlainText(f'[Вы]:\t{msg.decode("utf-8")}')
+                        self.from_me = False
+                    else:
+                        self.ui.msg_plainTextEdit.appendPlainText(msg.decode('utf-8'))
+            except socket.error as e:
+                print(e)
+                break
+            
+
 
     def __disconnect(self):
-        self.sock.close() 
+        self.__send_message('\t\t---user_disconnect---', True)
+        self.sock.close()
         self.ui.disconnect_btn.hide()
         self.ui.frame_disconnect.lower()
         self.ui.msg_plainTextEdit.clear()
