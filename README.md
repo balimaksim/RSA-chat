@@ -20,6 +20,22 @@ Then you need to install the required libraries (see **requirements.txt** file).
 python -m venv venv
 ```
 
+To open the console, press windows + R, after which a dialog box will open.
+Write in it
+```
+cmd
+```
+
+Then your console will open. Write in it:
+```
+cd Path_to_this_application
+```
+
+After which you will have a virtual environment. To start the virtual environment, write the following:
+```
+venv\Scripts\activate
+```
+
 After which you will have a virtual environment. Then you need to install the libraries from requirements.txt (You must be in the directory with the requirements.txt file):
 ```
 pip install -r requirements.txt

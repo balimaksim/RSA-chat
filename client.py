@@ -1,30 +1,17 @@
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import QThread
-from PyQt5.QtWidgets import QApplication
-from design import *
-import threading
-import shelve
-import socket
-import rsa
-import sys
-import os
-
-
-# class MessageContorller(QThread):
-#     def __init__(self, window, socket):
-#         super().__init__()
-#         self.window = window
-#         self.socket = socket
-
-#     def run(self):
-#         while True:
-#             data = self.socket.recv(1024)
-
-#             self.window.msg_plainTextEdit.setFocus()
-#             with shelve.open('private\private') as file:
-#                 msg = rsa.decrypt(data, file['private_key'])
-
-#                 self.window.msg_plainTextEdit.appendPlainText(f'[Вы]:\t{msg.decode("utf-8")}')
+try:
+    from PyQt5 import QtWidgets, QtCore
+    from PyQt5.QtCore import QThread
+    from PyQt5.QtWidgets import QApplication
+    from design import *
+    import threading
+    import shelve
+    import socket
+    import rsa
+    import sys
+    import os
+except:
+    print('''[ERROR] Required libraries are not installed! To install them use:
+    pip install -r requirements.txt''')
 
 
 class Client(QtWidgets.QMainWindow):
@@ -58,7 +45,7 @@ class Client(QtWidgets.QMainWindow):
         try:
             self.sock = socket.socket()
             self.msg_get_thread = threading.Thread(target=self.__get_messages)
-            # self.MessageControllerThread = MessageContorller(window=self.ui, socket=self.sock)
+            
 
             if not os.path.exists('private\private.dat'):
                 self.ui.result_plainTextEdit.clear()
@@ -83,7 +70,6 @@ class Client(QtWidgets.QMainWindow):
 
                 self.__send_message('\n\t\t---user_connect---\n', True)
         except Exception as e:
-            print(e)
             self.ui.result_plainTextEdit.clear()
             self.ui.result_plainTextEdit.appendPlainText('Неверно введены данные!')
 
@@ -113,7 +99,6 @@ class Client(QtWidgets.QMainWindow):
 
 
     def __send_message(self, message=None, notification=False):
-        print(message)
         if len(str(self.ui.send_input.text())) > 0:
             msg = str(self.ui.send_input.text())
             with shelve.open('public\public') as file:
@@ -144,7 +129,6 @@ class Client(QtWidgets.QMainWindow):
                     else:
                         self.ui.msg_plainTextEdit.appendPlainText(msg.decode('utf-8'))
             except socket.error as e:
-                print(e)
                 break
             
 

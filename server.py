@@ -1,7 +1,10 @@
-import socket
-import threading
-import os
-
+try:
+    import socket
+    import threading
+    import os
+except:
+    print('''[ERROR] Required libraries are not installed! To install them use:
+    pip install -r requirements.txt''')
 
 class Server:
     def __init__(self) -> None:
@@ -46,7 +49,6 @@ class Server:
     def __connections_control(self) -> None:
         while len(self.users) < self.users_amount:
             conn, addr = self.server.accept()
-            print('f')
             if conn not in self.users:
                 self.users.append(conn)
                 msg_control = threading.Thread(target=self.__message_control, args=[conn])
@@ -61,11 +63,8 @@ class Server:
                 for client in self.users:
                     client.send(message)
             except socket.error as e:
-                print(e)
                 self.users.remove(conn)
-                print(self.thread_msg_list)
                 del self.thread_msg_list[conn]
-                print(self.thread_msg_list)
                 break
 
 
